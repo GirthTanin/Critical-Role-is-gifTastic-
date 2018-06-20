@@ -4,21 +4,36 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Gif Surprise</title>
-    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/reset.css">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="assets/style.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
-    <!-- <link href="https://fonts.googleapis.com/css?family=Old+Standard+TT" rel="stylesheet"> -->
+    
     
 </head>
 <body>
     <div id="wrapper">
 
         <!-- This is where the new stuff should start -->
-            
-        <button data-gif="Critical Role">Where a bunch of nerdy ass voice actors play Dungeons and Dragons.</botton>
+        <h1 id = "gifTastic">GIF Tastic!</h1>
+
+        <br>
+
+            <div id="buttons-view"></div>
+
+        <br>
 
         <!-- That is only one button, but it actually needs to be an array over in JS land. -->
+        <form id="topics-form">
+            <label for = "topic-input">New Topic</label>
+            <input type = "text" id = "topic-input">
+
+            <input id = "add-subTopic" type = "submit" value = "Add a new fan topic!">
+        </form>
+
 
         <div id= "gifs-appear-here">
         </div>
@@ -29,6 +44,6 @@
 
 
     </div>
-    <script src="assets/gitTastic.js"></script>
+    <script src="assets/gifTastic.js"></script>
 </body>
 </html>

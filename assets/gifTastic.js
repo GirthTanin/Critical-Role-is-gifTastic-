@@ -16,7 +16,8 @@ var topics = [
   "Tiberius Stormwind",
   "Critical Fail",
   "Vox Machina",
-  "Is it Thursday, yet?"
+  "Is it Thursday, yet?",
+  "Talks Machina",
 
 
 ]
@@ -70,7 +71,9 @@ $(".topic").on("click", function() {
   var subTopic= $(this).attr("data-gif");
 
     // This next will also need to be tweaked.
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + subTopic + "&api_key=dc6zaTOxFJmzC&limit=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + subTopic + "&api_key=2grxkFESyxoQd3eMOJN6V4jvq0kkMuCH&limit=10";
+    // 2grxkFESyxoQd3eMOJN6V4jvq0kkMuCH is giphy api key for GirthTanin
+    
 
 $.ajax({
     url: queryURL,
@@ -82,12 +85,12 @@ $.ajax({
     var results = response.data;
     for (var i = 0; i < results.length; i++) {
 
-      console.log(response.data[i]);
-      console.log(response.data[i].images.original);
+      // console.log(response.data[i]);
+      // console.log(response.data[i].images.original);
       
       // this next chunk will keep our code from populating filth for whoever gets to see this.
       if (results[i].rating !== "r" && results[i].rating !=="pg-13") {
-        // I think I need two classes on the new div, and somehow also find something to grab onto to toggle the state from still to animate.
+        // I think I need two classes on the new div, and somehow also find something to grab onto to toggle the state from still to animate.  So it took me a while to get to an understanding that the keys in an API call are very similar to an array.  An array with arrays in it.  Or an object with many attributes or descriptors in it.
         var critRoleImage = $("<div class='item' class='gif'>");
         var rating = results[i].rating;
         var p = $("<p>").text("Rating: " + rating + " ");
@@ -95,39 +98,38 @@ $.ajax({
         var gifImage = $("<img>");
 
         gifImage.attr("src", results[i].images.fixed_height.url);
-        gifImage.attr("alt", "critRole image");
-    
+
+        gifImage.addClass("crImage");
+
+        gifImage.attr("data-state", "animate");
+
+        gifImage.attr("data-animate", results[i].images.fixed_height.url);
+
+        gifImage.attr("data-still", results[i].images.fixed_height_still.url);
+// just above, I need to be able to recognize what is needed to get the correct size and which image, and then the magic part...
+
         critRoleImage.append(p);
         critRoleImage.append(gifImage);
     
         $("#gifs-appear-here").prepend(critRoleImage);
-    
-      // I've tried to add the class .gif like we did in the pausing gifs activity.
-      $(".gif").on("click", function() {
-            
+      }
+    }
+  });
+  
+  
+// I've tried to add the class .gif like we did in the pausing gifs activity.  It hasn't worked, I'm changing it to crImage to see if a better name helps me connect it correctly.
+$(".crImage").on("click", function() {
+      console.log("clicking the gif recognized");   
             
         var state = $(this).attr("data-state");
       
-        
-        if (state === "still") {
-          $(this).attr("src", $(this).attr("data-animate"));
-          $(this).attr("data-state", "animate");
-        } else {
+        if (state === "animate") {
           $(this).attr("src", $(this).attr("data-still"));
           $(this).attr("data-state", "still");
+        } else {
+          $(this).attr("src", $(this).attr("data-animate"));
+          $(this).attr("data-state", "animate");
         }
-      });
-
-
-
-
-      }
-    }
-
-    
-    
-
-
-
-  });
 });
+})
+

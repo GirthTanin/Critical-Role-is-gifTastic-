@@ -1,4 +1,5 @@
 body {
+    margin: 20px 0 20px 0;
     background-color: rgb(14, 2, 2);
     color: whitesmoke;
 }
@@ -6,6 +7,7 @@ body {
 #wrapper {
     margin: auto;
     padding: 20px;
+    top: 40px;
     background-color: rgb(107, 3, 3);
     color: whitesmoke;
     width: 960px;
@@ -14,6 +16,7 @@ body {
     text-align: center;
     line-height: 10%;
     /* font-size: 18px; */
+    /* border: 5px solid blue; */
 }
 
 #gifTastic {

@@ -20,7 +20,9 @@ $(document).ready(function () {
     "Vox Machina",
     "Is it Thursday, yet?",
     "Talks Machina",
-    "Greyskull"
+    "Greyskull",
+    "Fjord",
+    "Yasha",
   ]
 
   function roleCall() {
